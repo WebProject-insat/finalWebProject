@@ -1,0 +1,12 @@
+.container{
+    margin-top: 20px;
+}
+
+div.adtitle h2,div.adtitle p {
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}
+
+div.carousel-caption{
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.5);
+}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Registration
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-7">
+
+        <div class="bg-light p-3 mb-4">
+            <h6>Fill the form to register</h6>
+        </div>
+
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.username,{"label" : "Full Name","attr": {"placeholder":"Enter Your Full Name..."}}) }}
+        {{ form_row(form.email,{"attr": {"placeholder":"Enter a valid Email.."}}) }}
+        {{ form_row(form.password,{"label":"Password" ,"attr": {"placeholder":"Enter a valid password..."}}) }}
+        {{ form_row(form.confirmPassword,{"label":"Password Confirmation","attr": {"placeholder":"Confirm your password..."}}) }}
+        {{ form_row(form.phoneNumber,{'attr':{'placeholder':'Enter your Phone number..'}}) }}
+        {{ form_row(form.age,{'attr':{'placeholder':'Enter your age...'}}) }}
+        {{ form_row(form.profession,{"attr": {"placeholder":"Enter Your Profession..."}}) }}
+        {{ form_row(form.image,{'label':'Image' , 'attr' : { 'value' : 'https://i.stack.imgur.com/ZQT8Z.png' }}) }}
+        {{ form_row(form.gender) }}
+        {{ form_row(form.about,{'label':'Tell us more about yourself','attr':{'placeholder':'Say anything you want ...'}}) }}
+
+        <button type="submit" class="btn btn-primary m-10">Inscription</button>
+
+        {{ form_end(form) }}
+
+
+   </div>
+{% endblock %}
+
+
+

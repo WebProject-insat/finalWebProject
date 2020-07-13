@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offers{% endblock %}
+
+{% block body %}
+    <div class="container" style="margin-top: 70px">
+        <h2 class="my-2">Our Hosts offers</h2>
+        <p></p>
+
+        <div class="row">
+            {% for ad in ads %}
+                {% include "announcement/_ad.html.twig" %}
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

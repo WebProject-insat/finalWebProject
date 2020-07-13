@@ -1,0 +1,16 @@
+#content{
+    margin-top: 57px;
+}
+
+nav{
+    margin-bottom: 20px;
+    z-index: 5;
+}
+
+footer{
+
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin-top: 10px;
+}

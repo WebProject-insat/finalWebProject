@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h2 style="margin-top: 70px">Change your Announcement</h2>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{#
+{% block title %}
+    Edit Announce
+{% endblock %}
+
+{% form_theme form _self %}
+
+{% block body %}
+
+    <div class="container bg-light">
+        <p></p>
+        <h2 class="my-5">Modify Your announce : {{ ad.title }}</h2>
+
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-secondary">
+                    <h3>General informations</h3>
+                    <hr>
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.price) }}
+                    {{ form_row(form.roomNb) }}
+                    {{ form_row(form.surface) }}
+                    {{ form_row(form.AvailabilityDate) }}
+                    {{ form_row(form.locatedAt) }}
+
+                </div>
+                <div class="alert alert-secondary">
+                    <h3>Announce details</h3>
+                    <hr>
+                    {{ form_row(form.maxRoomates) }}
+                    {{ form_row(form.balcon) }}
+                    {{ form_row(form.garden) }}
+                    {{ form_row(form.garage) }}
+                    {{ form_row(form.furnished) }}
+                    {{ form_row(form.Smoker) }}
+                    {{ form_row(form.description) }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="alert alert-secondary">
+                    <h3>Announce Images</h3>
+                    <hr>
+                    {{ form_row(form.CoverImage) }}
+                    {{ form_row(form.imagess) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-success clearfix">
+            <h3>Save and Display my Announce</h3>
+            <p><strong>Your are going to make your announcement online. Please make sure your data is valid and correct before submitting </strong></p>
+            <button type="submit"
+                    class="btn btn-lg btn-primary float-right"> {{ button|default('Modify My announce') }} &nbsp; <i
+                        class="fa fa-share"></i></button>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+{% endblock %}
+
+{% block _announcement_imagess_widget %}
+    <p>Click to add Images!</p>
+    {{ form_widget(form) }}
+
+    <input type="hidden" id="widget-counter" value="0">
+
+    <div class="form-group">
+        <button type="button" id="add-image" class="btn btn-primary">Add Image</button>
+    </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+
+{% block _announcement_imagess_entry_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _announcement_imagess_entry_widget %}
+    <div class="form-group" id="block_{{ id }}">
+        <div class="row">
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-8">{{ form_widget(form.url) }}</div>
+                    <div class="col-4">{{ form_widget(form.caption) }}</div>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" data-action="delete" data-target="#block_{{ id }}" class="btn btn-danger">X</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('#add-image').click(function () {
+            // on recupére le nombre de futurs champs crées
+            const index = +($('#widget-counter').val());
+
+            //on récupére les prototype des entrées
+            const tmpl = $('#announcement_imagess').data('prototype').replace(/__name__/g, index);
+
+            // on fait l'injection du code au sein de la div
+            $('#announcement_imagess').append(tmpl);
+
+            $('#widget-counter').val(index+1)
+
+            // gestion de bouton supprimer
+            handleDeleteButtons();
+
+        });
+
+        function updateCounter() {
+            const count = +$('#ad_images div.form-group').length;
+
+            $('#widget-counter').val(count);
+
+        }
+        updateCounter();
+        function handleDeleteButtons() {
+            $('button[data-action="delete"]').click(function () {
+                const target = this.dataset.target;
+                $(target).remove();
+
+            })
+        }
+        handleDeleteButtons();
+
+    </script>
+{% endblock %}
+#}

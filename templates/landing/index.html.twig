@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}e-Local{% endblock %}
+
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/landing-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customLanding.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/city.css') }}">
+{% endblock %}
+
+{% block body %}
+    {# Masthead #}
+
+    <header class="masthead text-white text-center">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-9 mx-auto">
+                    {% for message in app.session.flashBag.get('success') %}
+                        <div class="alert alert-success" >
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    {% for message in app.session.flashBag.get('errorCityId') %}
+                        <div class="alert alert-danger" >
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                    <h1 class="mb-5"><a id="PostAnnouncement" href="{{ path('new_announcement') }}">Post an Announcement ! </a></h1>
+                    <h2 class="mb-5">Or ... Maybe have a look at our offers :</h2>
+
+                </div>
+                <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                    <form method="POST" autocomplete="off" action="{{ path('home') }}">
+                       <div class="form-row">
+                            <div class="col-12 col-md-9 mb-2 mb-md-0">
+                                <form method="POST" autocomplete="off" action="{{ path('home') }}">
+                                    <div class="autocomplete" >
+                                        <input id="myInput" type="text" name="myCountry" placeholder="Country"style="width:100% ; padding-left: 10px ; height: 40px">
+                                    </div>
+                                </form>
+                                <!--  <input type="text" class="form-control form-control-lg"
+                                        placeholder="Enter a city name..."> -->
+                             </div>
+                             <div class="col-12 col-md-3">
+                                 <button type="submit" class="btn btn-block btn-lg btn-primary">Search</button>
+                             </div>
+                         </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+    {# endMasthead #}
+
+
+    {# Icons Grid #}
+    <section id="why" class="features-icons bg-light text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="fas fa-home  m-auto text-primary "></i>
+                        </div>
+                        <h3>Find a Room</h3>
+                        <p class="lead mb-0">For your safety, we manually check each advertisement posted on our site.
+                            Find your ideal roommate, meet the roommates who live there and organize room tours.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="fas fa-user-friends m-auto text-primary"></i>
+                        </div>
+                        <h3>Find Roommates</h3>
+                        <p class="lead mb-0">Consult the roommates looking for a room in your area and find the ideal
+                            person to be your roommate.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                        <div class="features-icons-icon d-flex">
+                            <i class="far fa-check-circle m-auto text-primary"></i>
+                        </div>
+                        <h3>Easy to Use</h3>
+                        <p class="lead mb-0">Easy guided Steps to your apartment door </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+     {# endIconsGrid #}
+    <hr style="width: 100%" class="my-0">
+    <div class="bg-light p-3 ">
+        <h2 class="text-center">Our Recommended Cities :</h2>
+    </div>
+
+    <div class="container">
+    <div class="d-flex flex-row flew-wrap">
+        {% for city in cities %}
+            <div class="col-4 mt-4">
+                <div class="border border-dark rounded p-2 clearfix text-center">
+                    <h2 style="width: fit-content">
+                        {{ city.name }}
+                    </h2>
+                    <img style="height: 270px;" class="img-fluid rounded" src="{{ city.image }}" alt="Image de Tunis">
+                    <hr>
+                    <p>Average Pricing : {{ city.avgPrice | format_number({fraction_digit: 2}) }} DT</p>
+                    <p>Available announcements : {{ city.nbAnnouncements }}</p>
+                    <hr>
+                    <a href="{{ path('city' , { 'slug' : city.slug}) }}" class="btn btn-primary float-right">
+                        View More
+                    </a>
+
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+    </div>
+
+    </div>
+
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/country.js') }}"></script>
+{% endblock %}

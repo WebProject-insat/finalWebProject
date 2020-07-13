@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container" style="margin-top:100px">
+    {% for message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success" >
+            {{ message }}
+        </div>
+    {% endfor %}
+    <div class="row align-item-center">
+        <div class="col-3 text-center">
+            <img src="{{ user.image }}" class="avatar mb-3" alt="Avatar de {{ user.username }}">
+            <br>
+            <span class="badge badge-primary">{{ user.announcements| length }} annoucements</span>
+        </div>
+        <div class="col-9">
+            <h1>{{ user.username }} </h1>
+            
+            {% if user is same as (app.user) %}
+
+                <div class="mt-3">
+                    <p>phone number: {{user.phoneNumber}}</p>
+                    <p>email: {{user.email}}</p>
+                    <p>age: {{user.age}}</p>
+                    <p>profession: {{user.profession}}</p>
+                    <a href="{{ path('account_profile') }}" class="btn btn-primary mr-2 mb-2">
+                        Modify My Profile Info
+                    </a>
+                    {#
+                    <a href="{{ path('account_password') }}" class="btn btn-primary mr-2 mb-2">
+                        Modify My Password
+                    </a>#}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    {{ user.about | raw}}
+    <hr>
+    <h2>Les annonces de {{ user.username }} </h2>
+    {% if user.announcements | length > 0 %}
+            <div class="row">
+                {% for ad in user.announcements %}
+                   {% include "announcement/_ad.html.twig" %}
+                {% endfor %}
+            </div>
+    {% else %}
+        <div class="alert alert-warning">
+            <p>
+                no announcements yet from <strong>{{ user.username }}</strong>
+            </p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %} 

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CityController!{% endblock %}
+{% block stylesheets %}
+    {{ parent()  }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script src="{{ asset('js/hscript.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+<div class="container" style="margin-top: 60px">
+    <!-- <div class="col">
+         <div class="col-sm">
+            <div id="searching" class="hhhh">
+                <label for="search">Search :</label> <br>
+                <input type="search" placeholder="Enter city name" id="search" > <br> <br> <br>
+                <div id="parameters">
+                    <div>
+                        <label for="budget">What is your budget ?</label> <br> <br>
+                        <input id="theBudget" type="range" min="100" max="3000" value="700">
+                        <span id="budget">1450 DT</span> <br> <br>
+                    </div>
+                    <label for="checkCategories">Categories :</label> <br>
+                    <div>
+                        <input type="radio" name="categories" value="house">
+                        <label for="house">House</label> <br>
+                        <input type="radio" name="categories" value="appartment">
+                        <label for="appartment">Apartment</label>
+                    </div> <br>
+                    <label for="romms">Room numbers :</label>
+                    <div id="buttons">
+                        <a href="#" class="buttonrooms" >1</a>
+                        <a href="#" class="buttonrooms" >2</a>
+                        <a href="#" class="buttonrooms" >3</a>
+                        <a href="#" class="buttonrooms" >4</a>
+                    </div> <br>
+                    <a href="#" onclick="displayAdvancedFeatures()" id="aForFeatures">Advanced features &#8595</a>
+                    <div id="advanced">
+                        <input type="checkbox" >
+                        <label class="hhcontainer">Furnished house</label> <br>
+                        <input type="checkbox" >
+                        <label class="hhcontainer">With Garden</label><br>
+                        <input type="checkbox" >
+                        <label class="hhcontainer">With Garage</label><br>
+                        <input type="checkbox" >
+                        <label class="hhcontainer">Allow Smoking</label><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>-->
+    <div class="row">
+
+            {% for ad in announcements %}
+
+            {% include "announcement/_ad.html.twig" %}
+            {% endfor %}
+            
+            
+        </div>
+</div>
+
+{% endblock %}

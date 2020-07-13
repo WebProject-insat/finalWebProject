@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta lang="en">
+    <title>{% block title %}e-Local{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/litera/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/base.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{# Navbar #}
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-0 my-0" style="padding-bottom:2px;position: fixed;top : 0;left: 0;width: 100% ; background-color: #c8e1db !important ;">
+    <a class="navbar-brand py-0" href="{{ path('home') }}"><img src="{{asset('images/logo22.png')}}" alt="logo image" style="height: 45px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03"
+            aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('ads_index')}}">Offers <span class="sr-only">(current)</span></a>
+            </li>
+
+
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+            </li>
+            {% if not app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('security_registration')}}">Register!</a>
+            </li>
+            <li>
+                <a class="btn btn-secondary my-2 mx-1 my-sm-0" href="{{ path('security_login') }}">Login</a>
+            </li>
+            {% else %}
+            <li>
+                <a class="btn btn-secondary my-2 mx-1 my-sm-0" href="{{ path('security_logout') }}">Logout</a>
+            </li>
+            <li>
+                <a href="{{ path('user_show' , {'slug' : app.user.slug}) }}"><img style="border-radius: 10px ; width: 30px ; height: fit-content " src="{{app.user.image}}" alt="pdp"></a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{# endNavbar #}
+
+
+
+
+{% block body %}{% endblock %}
+
+</div>
+
+{# Footer #}
+<!-- Footer -->
+
+<footer class="page-footer font-small teal pt-4"  >
+    <hr style="width: 100%">
+    <!-- Footer Text -->
+    <div class="container-fluid text-center text-md-left" >
+
+        <!-- Grid row -->
+        <div class="row">
+
+            <!-- Grid column -->
+            <div class="col-md-4 mt-md-0 mt-3 px-5">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">About Us</h5>
+                <pre>
+Top one flatsharing service
+in Tunisia
+elocal is your chance
+to get the best.
+                </pre>
+
+
+            </div>
+            <!-- Grid column -->
+
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-4 mb-md-0 mb-3 px-5">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Useful Links</h5>
+                <ul class="list-group list-group-flush" >
+                    <li class="list-group-item px-0 py-0 " style="width: 30%" ><a href="{{ path('home') }}">Home Page</a></li>
+                    <li class="list-group-item px-0 py-0" style="width: 30%"><a href="{{ path('security_registration') }}">Sign Up</a></li>
+                    <li class="list-group-item px-0 py-0" style="width: 30%"><a href="{{ path('security_login') }}">Sign In</a></li>
+                    <li class="list-group-item px-0 py-0" style="width: 30%"><a href="{{ path('home') }}#why">Help</a></li>
+                </ul>
+
+            </div>
+
+            <!-- Grid column -->
+            <hr class="clearfix w-100 d-md-none pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-4 mb-md-0 mb-3 px-5">
+
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Contact Us</h5>
+                <p><i class="fas fa-phone mx-1"></i>+21652871258</p>
+                <p><i class="fas fa-envelope mx-1"></i>support@elocale.tn</p>
+                <p><i class="fas fa-fax mx-1"></i>+21671623786</p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <hr style="width: 100%" class="my-0">
+    <!-- Footer Text -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="https://google.com/" target="_blank"> Facebook.com</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+{# endFooter #}
+
+
+
+
+{# Boostrap && jQuery Scripts #}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+{# font awsome Script #}
+<script src="https://kit.fontawesome.com/391d59d3db.js" crossorigin="anonymous"></script>
+
+
+{% block javascripts %}{% endblock %}
+</body>
+</html>
